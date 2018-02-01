@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <canvas id="myCanvas"></canvas>
+
+
+
+    <script>
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+
+        var x = 0; // x coord.
+        var y = 60; // y coord
+        var rw = 10;
+        var rh = 10;
+
+
+        //Creat rectangle
+        function drawRect() {
+            ctx.fillStyle = "#ff0000";
+            ctx.fillRect(x, y, rw, rh);
+        }
+        drawRect(x, y, rw, rh);
+
+        // valdymas rect
+        window.onkeydown = function(event){
+            var keyPr = event.keyCode;//moving right
+            ctx.clearRect(x, y, rw, rh);            //istrina anksteli veiksma
+            if( keyPr === 39){
+                x += 5;
+            }else if( keyPr === 37){  //moving left
+                ctx.clearRect(x, y, rw, rh);
+                x -= 5;
+            }else if( keyPr === 38){
+                ctx.clearRect(x, y, rw, rh);
+                y -= 5;            //moving top
+            }else if( keyPr === 40){
+                ctx.clearRect(x, y, rw, rh);
+                y += 5;            //moving down
+            }
+            drawRect(x, y, rw, rh);
+        }
+
+        // //creating wall
+
+        var xWall = 50;
+        var yWall = 0;
+        var wWall = 10;
+        var hWall = 60;
+
+
+//        requestAnimationFrame(drawWall);
+
+        function drawWall(){
+            ctx.fillStyle = "black";
+            ctx.fillRect(xWall, yWall, wWall, hWall);
+        }
+        drawWall();
+        drawWall( 70, 0,10, 60);
+        var id = setInterval(move, 5);
+        function move(){
+            if(yWall ==100){
+                clearInterval(id);
+            }else{
+                yWall++;
+            }
+        }
+        //moving wall
+//        function move(){
+//        ctx.clearRect(xWall, yWall, wWall, hWall)
+//        if(yWall >= 0){
+//            yWall += 10;
+//        }
+//
+//        }
+//
+
+//        requestAnimationFrame(drawWall);
+
+
+
+
+    </script>
+</body>
+
+</html>
