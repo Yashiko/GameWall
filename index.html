@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
-
+    <div id="time" class="timer"></div>
     <canvas id="myCanvas"></canvas>
 
 
-
     <script>
+        //timer
+        document.getElementById("time").style.backgroundColor = "yellow";
+        document.getElementById("time").style.width = "1400px";
+        document.getElementById("time").style.textAlign = "right";
+        document.getElementById("time").style.fontSize = "20px";
+
+        var timeLeft = 20;
+        var elem = document.getElementById("time");
+        var timerId = setInterval(countdown, 1000);
+        function countdown(){
+            if (timeLeft == 0){
+                clearTimeout(timerId);
+                alert("Game Over");
+            }else{
+                elem.innerHTML = timeLeft +' seconds left';
+                timeLeft--;
+            }
+        }
+
+
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
 
@@ -24,14 +41,11 @@
         var rw = 10;
         var rh = 10;
 
-
-
         //Creat rectangle
         function drawRect() {
             ctx.fillStyle = "#ff0000";
             ctx.fillRect(x, y, rw, rh);
             //                    ctx.style.position = "absolute";
-
         }
         drawRect(x, y, rw, rh);
 
@@ -56,27 +70,38 @@
 
         // //creating wall
 
-        var xWall = 50;
+        var xWall = [50, 100, 150];
         var yWall = 0;
         var wWall = 10;
-        var hWall = 20;
+        var hWall = 60;
 
-        ctx.fillStyle = "black";
-        ctx.fillRect(xWall, yWall, wWall, hWall);
+        function drawWall() {
+            ctx.fillStyle = "black";
+            ctx.fillRect(xWall[0], yWall, wWall, hWall);
+        }
+        drawWall(xWall[0], yWall, wWall, hWall);
 
         function move() {
-            if (yWall = 150) {
-                ctx.clearRect(xWall, yWall, wWall, hWall);
-                yWall = 0;
-
-
+            if (yWall == ctx.canvas.height) {
+                ctx.clearRect(xWall[0], yWall, wWall, hWall);
+                yWall = -60;
+                drawWall(xWall[0], yWall, wWall, hWall);
             } else {
-                ctx.clearRect(xWall, yWall, wWall, hWall);
-                yWall += 5;
+                ctx.clearRect(xWall[0], yWall, wWall, hWall);
+                yWall += 10;
+                drawWall(xWall[0], yWall, wWall, hWall);
+
             }
         }
+        setInterval(move, 100);
 
-        setInterval(move, 2000);
+
+
+
+
+
+
+
     </script>
 </body>
 
