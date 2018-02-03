@@ -25,28 +25,31 @@
         var rh = 10;
 
 
+
         //Creat rectangle
         function drawRect() {
             ctx.fillStyle = "#ff0000";
             ctx.fillRect(x, y, rw, rh);
+            //                    ctx.style.position = "absolute";
+
         }
         drawRect(x, y, rw, rh);
 
         // valdymas rect
-        window.onkeydown = function(event){
-            var keyPr = event.keyCode;//moving right
-            ctx.clearRect(x, y, rw, rh);            //istrina anksteli veiksma
-            if( keyPr === 39){
+        window.onkeydown = function(event) {
+            var keyPr = event.keyCode; //moving right
+            ctx.clearRect(x, y, rw, rh); //istrina anksteli veiksma
+            if (keyPr === 39) {
                 x += 5;
-            }else if( keyPr === 37){  //moving left
+            } else if (keyPr === 37) { //moving left
                 ctx.clearRect(x, y, rw, rh);
                 x -= 5;
-            }else if( keyPr === 38){
+            } else if (keyPr === 38) {
                 ctx.clearRect(x, y, rw, rh);
-                y -= 5;            //moving top
-            }else if( keyPr === 40){
+                y -= 5; //moving top
+            } else if (keyPr === 40) {
                 ctx.clearRect(x, y, rw, rh);
-                y += 5;            //moving down
+                y += 5; //moving down
             }
             drawRect(x, y, rw, rh);
         }
@@ -56,40 +59,24 @@
         var xWall = 50;
         var yWall = 0;
         var wWall = 10;
-        var hWall = 60;
+        var hWall = 20;
+
+        ctx.fillStyle = "black";
+        ctx.fillRect(xWall, yWall, wWall, hWall);
+
+        function move() {
+            if (yWall = 150) {
+                ctx.clearRect(xWall, yWall, wWall, hWall);
+                yWall = 0;
 
 
-//        requestAnimationFrame(drawWall);
-
-        function drawWall(){
-            ctx.fillStyle = "black";
-            ctx.fillRect(xWall, yWall, wWall, hWall);
-        }
-        drawWall();
-        drawWall( 70, 0,10, 60);
-        var id = setInterval(move, 5);
-        function move(){
-            if(yWall ==100){
-                clearInterval(id);
-            }else{
-                yWall++;
+            } else {
+                ctx.clearRect(xWall, yWall, wWall, hWall);
+                yWall += 5;
             }
         }
-        //moving wall
-//        function move(){
-//        ctx.clearRect(xWall, yWall, wWall, hWall)
-//        if(yWall >= 0){
-//            yWall += 10;
-//        }
-//
-//        }
-//
 
-//        requestAnimationFrame(drawWall);
-
-
-
-
+        setInterval(move, 2000);
     </script>
 </body>
 
