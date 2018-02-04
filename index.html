@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
@@ -18,24 +19,38 @@
         document.getElementById("time").style.width = "1400px";
         document.getElementById("time").style.textAlign = "right";
         document.getElementById("time").style.fontSize = "20px";
-
         var timeLeft = 20;
         var elem = document.getElementById("time");
         var timerId = setInterval(countdown, 1000);
-        function countdown(){
-            if (timeLeft == 0){
+
+        function countdown() {
+            if (timeLeft == 0) {
                 clearTimeout(timerId);
                 alert("Game Over");
-            }else{
-                elem.innerHTML = timeLeft +' seconds left';
+            } else {
+                elem.innerHTML = timeLeft + ' seconds left';
                 timeLeft--;
             }
         }
 
+        //        document.getElementById("life").style.cssFloat = "left";
+        //        var lifeLeft = 3;
+        //        var lifeElem = document.getElementById("life");
+        //        var LifeId = setInterval(countdownLife, 1000);
+        //        function countdownLife(){
+        //            if (lifeLeft == 0){
+        //                clearTimeout(lifeId);
+        //                alert("Game Over");
+        //            }else{
+        //                lifeElem.innerHTML = lifeLeft + 'life left';
+        //                lifeLeft--;
+        //            }
+        //        }
+
+
 
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
-
         var x = 0; // x coord.
         var y = 60; // y coord
         var rw = 10;
@@ -68,40 +83,97 @@
             drawRect(x, y, rw, rh);
         }
 
-        // //creating wall
+        //creating wall
 
-        var xWall = [50, 100, 150];
-        var yWall = 0;
-        var wWall = 10;
-        var hWall = 60;
+//        function Square(x1, y1, w1, h1, color) {
+//            this.x1 = x1;
+//            this.y1 = y1;
+//            this.w1 = w1;
+//            this.h1 = h1;
+//            this.color = color;
+//            //moving
+//            this.anim = function() {
+//                if (this.y1 < context.canvas.height) {
+//                    this.y1 += 5;
+//                    context.fillStyle = this.color;
+//                    context.fillRect(this.y1, this.y1, this.w1, this.h1, this.color);
+//                } else this.y1 = -this.h1;
+//            }
+//        }
+//
+//        function init() {
+////            canvas = document.getElementById('myCanvas');
+////            context = canvas.getContext("2d");
+//            var rect1 = new Square(50, 0, 10, 60, "yellow");
+//            var rect2 = new Square(80, 0, 10, 60, "blue");
+//            var objects = [rect1, rect2];
+//
+//            setInterval(function() {
+////                blank();
+//                for (rect in objects) {
+//                    objects[rect].anim();
+//                }
+//            }, 50);
+//        }
+//        init();
+//        function blank() {
+//            ctx.fillStyle = "green";
+//            ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+//        }
 
-        function drawWall() {
-            ctx.fillStyle = "black";
-            ctx.fillRect(xWall[0], yWall, wWall, hWall);
-        }
-        drawWall(xWall[0], yWall, wWall, hWall);
-
-        function move() {
-            if (yWall == ctx.canvas.height) {
-                ctx.clearRect(xWall[0], yWall, wWall, hWall);
-                yWall = -60;
-                drawWall(xWall[0], yWall, wWall, hWall);
-            } else {
-                ctx.clearRect(xWall[0], yWall, wWall, hWall);
-                yWall += 10;
-                drawWall(xWall[0], yWall, wWall, hWall);
-
-            }
-        }
-        setInterval(move, 100);
 
 
 
 
 
 
+                var xWall = 50;
+                var yWall = 0;
+                var wWall = 10;
+                var hWall = 60;
 
+                function drawWall() {
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(xWall, yWall, wWall, hWall);
+                }
+                drawWall(xWall, yWall, wWall, hWall);
 
+                function move() {
+                    if (yWall == ctx.canvas.height) {
+                        ctx.clearRect(xWall, yWall, wWall, hWall);
+                        yWall = -60;
+                        drawWall(xWall, yWall, wWall, hWall);
+                    } else {
+                        ctx.clearRect(xWall, yWall, wWall, hWall);
+                        yWall += 10;
+                        drawWall(xWall, yWall, wWall, hWall);
+                    }
+                }
+                setInterval(move, 100);
+
+                var xWall2 = 100;
+                var yWall2 = 10;
+                var wWall2 = 10;
+                var hWall2 = 60;
+
+                function drawWall2() {
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(xWall2, yWall2, wWall2, hWall2);
+                }
+                drawWall2(xWall2, yWall2, wWall2, hWall2);
+
+                function move2() {
+                    if (yWall2 == ctx.canvas.height) {
+                        ctx.clearRect(xWall2, yWall2, wWall2, hWall2);
+                        yWall2 = -60;
+                        drawWall2(xWall2, yWall2, wWall2, hWall2);
+                    } else {
+                        ctx.clearRect(xWall2, yWall2, wWall2, hWall2);
+                        yWall2 += 10;
+                        drawWall2(xWall2, yWall2, wWall2, hWall2);
+                    }
+                }
+                setInterval(move2, 50);
     </script>
 </body>
 
