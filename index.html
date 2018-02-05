@@ -22,7 +22,6 @@
         var timeLeft = 20;
         var elem = document.getElementById("time");
         var timerId = setInterval(countdown, 1000);
-
         function countdown() {
             if (timeLeft == 0) {
                 clearTimeout(timerId);
@@ -32,6 +31,7 @@
                 timeLeft--;
             }
         }
+
 
         //        document.getElementById("life").style.cssFloat = "left";
         //        var lifeLeft = 3;
@@ -51,129 +51,119 @@
 
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
+        function background() {
+            ctx.fillStyle = "darkgreen";
+            ctx.fillRect(0, 0, c.width, c.height);
+        }
+
+        // valdomas rectange
         var x = 0; // x coord.
         var y = 60; // y coord
         var rw = 10;
         var rh = 10;
-
         //Creat rectangle
         function drawRect() {
             ctx.fillStyle = "#ff0000";
             ctx.fillRect(x, y, rw, rh);
-            //                    ctx.style.position = "absolute";
         }
-        drawRect(x, y, rw, rh);
-
         // valdymas rect
-        window.onkeydown = function(event) {
+        window.onkeydown = function (event) {
             var keyPr = event.keyCode; //moving right
-            ctx.clearRect(x, y, rw, rh); //istrina anksteli veiksma
             if (keyPr === 39) {
                 x += 5;
             } else if (keyPr === 37) { //moving left
-                ctx.clearRect(x, y, rw, rh);
                 x -= 5;
             } else if (keyPr === 38) {
-                ctx.clearRect(x, y, rw, rh);
                 y -= 5; //moving top
             } else if (keyPr === 40) {
-                ctx.clearRect(x, y, rw, rh);
                 y += 5; //moving down
             }
-            drawRect(x, y, rw, rh);
         }
 
         //creating wall
+        function Square(x1, y1, w1, h1) {
+            this.x1 = x1;
+            this.y1 = y1;
+            this.w1 = w1;
+            this.h1 = h1;
 
-//        function Square(x1, y1, w1, h1, color) {
-//            this.x1 = x1;
-//            this.y1 = y1;
-//            this.w1 = w1;
-//            this.h1 = h1;
-//            this.color = color;
-//            //moving
-//            this.anim = function() {
-//                if (this.y1 < context.canvas.height) {
-//                    this.y1 += 5;
-//                    context.fillStyle = this.color;
-//                    context.fillRect(this.y1, this.y1, this.w1, this.h1, this.color);
-//                } else this.y1 = -this.h1;
-//            }
-//        }
-//
-//        function init() {
-////            canvas = document.getElementById('myCanvas');
-////            context = canvas.getContext("2d");
-//            var rect1 = new Square(50, 0, 10, 60, "yellow");
-//            var rect2 = new Square(80, 0, 10, 60, "blue");
-//            var objects = [rect1, rect2];
-//
-//            setInterval(function() {
-////                blank();
-//                for (rect in objects) {
-//                    objects[rect].anim();
-//                }
-//            }, 50);
-//        }
-//        init();
-//        function blank() {
-//            ctx.fillStyle = "green";
-//            ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-//        }
-
-
-
-
-
-
-
-                var xWall = 50;
-                var yWall = 0;
-                var wWall = 10;
-                var hWall = 60;
-
-                function drawWall() {
+            //moving
+            this.anim = function () {
+                if (this.y1 < ctx.canvas.height) {
+                    this.y1 += 5;
                     ctx.fillStyle = "black";
-                    ctx.fillRect(xWall, yWall, wWall, hWall);
-                }
-                drawWall(xWall, yWall, wWall, hWall);
+                    ctx.fillRect(this.x1, this.y1, this.w1, this.h1);
+                } else this.y1 = -80;
+            }
+        }
 
-                function move() {
-                    if (yWall == ctx.canvas.height) {
-                        ctx.clearRect(xWall, yWall, wWall, hWall);
-                        yWall = -60;
-                        drawWall(xWall, yWall, wWall, hWall);
-                    } else {
-                        ctx.clearRect(xWall, yWall, wWall, hWall);
-                        yWall += 10;
-                        drawWall(xWall, yWall, wWall, hWall);
-                    }
-                }
-                setInterval(move, 100);
+        function init() {
+            var rect1 = new Square(50, 0, 10, 50);
+            var rect2 = new Square(100, 20, 10, 80);
+            var rect3 = new Square(150, 10, 10, 40)
+            var rect4 = new Square(200, 60, 10, 70)
+            var objects = [rect1, rect2, rect3, rect4];
 
-                var xWall2 = 100;
-                var yWall2 = 10;
-                var wWall2 = 10;
-                var hWall2 = 60;
+            // pagr zaidimo veikimas
+            setInterval(function () {
+                background();               //set background
+                drawRect(x, y, rw, rh);     // set redRect
+                for (var rect in objects) { // sets walls
+                    objects[rect].anim();
 
-                function drawWall2() {
-                    ctx.fillStyle = "black";
-                    ctx.fillRect(xWall2, yWall2, wWall2, hWall2);
                 }
-                drawWall2(xWall2, yWall2, wWall2, hWall2);
+            }, 50);
 
-                function move2() {
-                    if (yWall2 == ctx.canvas.height) {
-                        ctx.clearRect(xWall2, yWall2, wWall2, hWall2);
-                        yWall2 = -60;
-                        drawWall2(xWall2, yWall2, wWall2, hWall2);
-                    } else {
-                        ctx.clearRect(xWall2, yWall2, wWall2, hWall2);
-                        yWall2 += 10;
-                        drawWall2(xWall2, yWall2, wWall2, hWall2);
-                    }
-                }
-                setInterval(move2, 50);
+        }
+        init();
+
+
+
+
+
+
+                // var xWall = 50;
+                // var yWall = 0;
+                // var wWall = 10;
+                // var hWall = 60;
+                // function drawWall() {
+                //     ctx.fillStyle = "black";
+                //     ctx.fillRect(xWall, yWall, wWall, hWall);
+                // }
+                // drawWall(xWall, yWall, wWall, hWall);
+                // function move() {
+                //     if (yWall == ctx.canvas.height) {
+                //         ctx.clearRect(xWall, yWall, wWall, hWall);
+                //         yWall = -60;
+                //         drawWall(xWall, yWall, wWall, hWall);
+                //     } else {
+                //         ctx.clearRect(xWall, yWall, wWall, hWall);
+                //         yWall += 10;
+                //         drawWall(xWall, yWall, wWall, hWall);
+                //     }
+                // }
+                // setInterval(move, 100);
+                // var xWall2 = 100;
+                // var yWall2 = 10;
+                // var wWall2 = 10;
+                // var hWall2 = 60;
+                // function drawWall2() {
+                //     ctx.fillStyle = "black";
+                //     ctx.fillRect(xWall2, yWall2, wWall2, hWall2);
+                // }
+                // drawWall2(xWall2, yWall2, wWall2, hWall2);
+                // function move2() {
+                //     if (yWall2 == ctx.canvas.height) {
+                //         ctx.clearRect(xWall2, yWall2, wWall2, hWall2);
+                //         yWall2 = -60;
+                //         drawWall2(xWall2, yWall2, wWall2, hWall2);
+                //     } else {
+                //         ctx.clearRect(xWall2, yWall2, wWall2, hWall2);
+                //         yWall2 += 10;
+                //         drawWall2(xWall2, yWall2, wWall2, hWall2);
+                //     }
+                // }
+                // setInterval(move2, 50);
     </script>
 </body>
 
