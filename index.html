@@ -59,14 +59,13 @@
         // valdomas rectange
         var x = 0; // x coord.
         var y = 60; // y coord
-        var rw = 10;
-        var rh = 10;
-        //Creat rectangle
-        function drawRect() {
-            ctx.fillStyle = "#ff0000";
-            ctx.fillRect(x, y, rw, rh);
+
+        //Creat car
+        function drawImg(){
+            carImage = new Image();
+            carImage.src = "car.gif";
+            ctx.drawImage(carImage, x, y, 20, 25);
         }
-        // valdymas rect
         window.onkeydown = function (event) {
             var keyPr = event.keyCode; //moving right
             if (keyPr === 39) {
@@ -91,7 +90,10 @@
             this.anim = function () {
                 if (this.y1 < ctx.canvas.height) {
                     this.y1 += 5;
-                    ctx.fillStyle = "black";
+//                    carImage = new Image();
+//            carImage.src = "car.gif";
+//            ctx.drawImage(carImage, this.x1, this.y1, this.w1, this.h1);
+                    ctx.fillStyle = "brown";
                     ctx.fillRect(this.x1, this.y1, this.w1, this.h1);
                 } else this.y1 = -80;
             }
@@ -107,7 +109,7 @@
             // pagr zaidimo veikimas
             setInterval(function () {
                 background();               //set background
-                drawRect(x, y, rw, rh);     // set redRect
+                drawImg();     // set redRect
                 for (var rect in objects) { // sets walls
                     objects[rect].anim();
 
