@@ -1,5 +1,8 @@
+
+html { 
+    overflow-y: hidden; 
+}
 canvas{
-    width: 1400px;
+    width: 1350px;
     height: 500px;
 }
-
