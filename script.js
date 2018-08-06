@@ -25,7 +25,7 @@ function background() {
 
 // valdomas rectange
 let x = 0; // x coord.
-let y = 60; // y coord
+let y = 60; // y coord  
 
 //Creat car
 function drawImg() {
@@ -81,6 +81,14 @@ function init() {
         for (let rect in objects) { // sets walls
             objects[rect].anim();
 
+        }
+
+        //susidurimas
+        if (carImage.x < 0){
+            carImage.x = 0;
+        }
+        if(carImage.y < 0 ){
+            carImage.y = 0;
         }
     }, 50);
 
