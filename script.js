@@ -32,6 +32,9 @@ function drawImg() {
     carImage = new Image();
     carImage.src = "car.gif";
     ctx.drawImage(carImage, x, y, 20, 25);
+        
+   
+
 }
 //controling the car
 window.onkeydown = function (event) {
@@ -45,6 +48,7 @@ window.onkeydown = function (event) {
     } else if (keyPr === 40) {
         y += 5; //moving down
     }
+
 }
 
 //creating wall
@@ -83,13 +87,11 @@ function init() {
 
         }
 
-        //susidurimas
-        if (carImage.x < 0){
+        //iseimas is ribu, kazkas blogai
+        if (carImage.x < 0)
             carImage.x = 0;
-        }
-        if(carImage.y < 0 ){
+        if (carImage.y < 0)
             carImage.y = 0;
-        }
     }, 50);
 
 }
