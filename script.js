@@ -54,10 +54,10 @@ window.onkeydown = function (event) {
     if (y < -14) {
         y = -14;
     }
-    if (x + 21 > c.width) { // + - 21 tai yramasinos ilgis, ta prasme jei ju nebutu, tai masina pasisleptu uz canvas masinos ilgiu
-        x = c.width - 21;   // c- canvas
+    if (x + 21 > c.width) { // + - 21 tai masinos ilgis, jei ju nebutu, tai masina pasisleptu uz canvas masinos ilgiu
+        x = c.width - 21;   // c - canvas
     }
-    if (y + 25 > c.height) {
+    if (y + 25 > c.height) { // same here with y coords
         y = c.height - 25;
     }
 }
@@ -89,6 +89,7 @@ function init() {
     let rect3 = new Square(150, 10, 10, 40)
     let rect4 = new Square(200, 60, 10, 70)
     let objects = [rect1, rect2, rect3, rect4];
+
 
     // pagr zaidimo veikimas
     setInterval(function () {
