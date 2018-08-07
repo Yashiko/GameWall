@@ -48,18 +48,18 @@ window.onkeydown = function (event) {
         y += 5; //moving down
     }
     //moving car can't go outside the canvas. 
-    if (x < 0){
+    if (x < 0) {
         x = 0;
     }
-    if (y < -14){
+    if (y < -14) {
         y = -14;
     }
-    if ( x + 21 > c.width){ // + - 21 tai yramasinos ilgis, ta prasme jei ju nebutu, tai masina pasisleptu uz canvas masinos ilgiu
-        x = c.width - 21;
+    if (x + 21 > c.width) { // + - 21 tai yramasinos ilgis, ta prasme jei ju nebutu, tai masina pasisleptu uz canvas masinos ilgiu
+        x = c.width - 21;   // c- canvas
     }
-    if ( y + 25> c.height){
+    if (y + 25 > c.height) {
         y = c.height - 25;
-    }    
+    }
 }
 
 //creating wall
