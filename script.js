@@ -32,8 +32,8 @@ function drawImg() {
     carImage = new Image();
     carImage.src = "car.gif";
     ctx.drawImage(carImage, x, y, 20, 25);
-        
-   
+
+
 
 }
 //controling the car
@@ -48,6 +48,13 @@ window.onkeydown = function (event) {
     } else if (keyPr === 40) {
         y += 5; //moving down
     }
+    //moving car can't go outside the canvas
+    if (x < 0)
+        x = 0;
+    if (y < -14)    
+        y = -14;
+    if (x > canvas.width);
+        x = canvas.width;
 
 }
 
@@ -64,7 +71,7 @@ function Square(x1, y1, w1, h1) {
             this.y1 += 5;   //wall moving speed
             ctx.fillStyle = "brown";
             ctx.fillRect(this.x1, this.y1, this.w1, this.h1);
-        } else { 
+        } else {
             this.y1 = -80;          //the wall start coord
         }
     }
@@ -87,12 +94,9 @@ function init() {
 
         }
 
-        //iseimas is ribu, kazkas blogai
-        if (carImage.x < 0)
-            carImage.x = 0;
-        if (carImage.y < 0)
-            carImage.y = 0;
     }, 50);
+
+    //iseimas is ribu, kazkas blogai
 
 }
 init();
