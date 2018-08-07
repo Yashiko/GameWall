@@ -1,4 +1,6 @@
-//timer
+// //timer
+
+
 document.getElementById("time").style.backgroundColor = "yellow";
 document.getElementById("time").style.width = "1350px";
 document.getElementById("time").style.textAlign = "center";
@@ -32,9 +34,6 @@ function drawImg() {
     carImage = new Image();
     carImage.src = "car.gif";
     ctx.drawImage(carImage, x, y, 20, 25);
-
-
-
 }
 //controling the car
 window.onkeydown = function (event) {
@@ -48,14 +47,19 @@ window.onkeydown = function (event) {
     } else if (keyPr === 40) {
         y += 5; //moving down
     }
-    //moving car can't go outside the canvas
-    if (x < 0)
+    //moving car can't go outside the canvas. 
+    if (x < 0){
         x = 0;
-    if (y < -14)    
+    }
+    if (y < -14){
         y = -14;
-    if (x > canvas.width);
-        x = canvas.width;
-
+    }
+    if ( x + 21 > c.width){ // + - 21 tai yramasinos ilgis, ta prasme jei ju nebutu, tai masina pasisleptu uz canvas masinos ilgiu
+        x = c.width - 21;
+    }
+    if ( y + 25> c.height){
+        y = c.height - 25;
+    }    
 }
 
 //creating wall
@@ -75,6 +79,7 @@ function Square(x1, y1, w1, h1) {
             this.y1 = -80;          //the wall start coord
         }
     }
+
 }
 
 // the walls coords
@@ -97,6 +102,7 @@ function init() {
     }, 50);
 
     //iseimas is ribu, kazkas blogai
+
 
 }
 init();
