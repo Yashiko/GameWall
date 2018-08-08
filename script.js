@@ -1,6 +1,4 @@
 // //timer
-
-
 document.getElementById("time").style.backgroundColor = "yellow";
 document.getElementById("time").style.width = "1350px";
 document.getElementById("time").style.textAlign = "center";
@@ -11,8 +9,8 @@ let timerId = setInterval(countdown, 1000);
 
 function countdown() {
     if (timeLeft == 0) {
-        clearTimeout(timerId);
-        setInterval(function(){
+        clearTimeout(timerId);  //sustabdomas timer'is
+        setInterval(function () {
             let result = `
             <div>
             <div style="font-size: 50px; text-align: center">TIMES UP</div>
@@ -21,11 +19,12 @@ function countdown() {
                 <div style="font-size: 30px; text-align: center">Are you want to play again?</div>
                 <br>
                 <button onclick="start();">Yes</button>
-            </div> 
+            </div>
             `;
+
             document.querySelector("#game").innerHTML = result;
-         },500);
-    } else{
+        }, 500);
+    } else {
         elem.innerHTML = timeLeft + ' seconds left';
         timeLeft--;
     }
@@ -42,7 +41,6 @@ function background() {
 // valdomas rectange
 let x = 0; // x coord.
 let y = 60; // y coord  
-
 //Creat car
 function drawImg() {
     carImage = new Image();
@@ -69,9 +67,9 @@ window.onkeydown = function (event) {
         y = -14;
     }
     if (x + 16 > c.width) { // + - 21 tai masinos ilgis, jei ju nebutu, tai masina pasisleptu uz canvas masinos ilgiu
-         if (x = c.width - 16){ //Palietus siena, laimima
+        if (x = c.width - 16) { //Palietus siena, laimima
             clearTimeout(timerId);  //laimejus, sustabdo timeri
-             setInterval(function(){
+            setInterval(function () {
                 let result = `
                 <div>
                     <div style="font-size: 50px; text-align: center">YOU WON!!!!</div>
@@ -82,14 +80,14 @@ window.onkeydown = function (event) {
                 </div> 
                 `;
                 document.querySelector("#game").innerHTML = result;
-             },500);
-         }   // c - canvas
+            }, 500);
+        }   // c - canvas
     }
     if (y + 25 > c.height) { // same here with y coords
         y = c.height - 25;
     }
 }
-function start(){   //start again, reload page
+function start() {   //start again, reload page
     location.reload();
 }
 
