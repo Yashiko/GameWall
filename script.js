@@ -61,12 +61,12 @@ window.onkeydown = function (event) {
             clearTimeout(timerId);  //laimejus, sustabdo timeri
              setInterval(function(){
                 let result = `
-                <di>
+                <div>
                     <div style="font-size: 50px; text-align: center">YOU WON!!!!</div>
                     <br>
                     <div style="font-size: 30px; text-align: center">Are you want to play again?</div>
                     <br>
-                    <button style="background-color:#C63B1E">Yes</button>
+                    <button onclick="start();">Yes</button>
                 </div> 
                 `;
                 document.querySelector("#game").innerHTML = result;
@@ -76,6 +76,9 @@ window.onkeydown = function (event) {
     if (y + 25 > c.height) { // same here with y coords
         y = c.height - 25;
     }
+}
+function start(){   //start again, reload page
+    location.reload();
 }
 
 //creating wall
@@ -113,13 +116,7 @@ function init() {
         drawImg();     // set redRect
         for (let rect in objects) { // sets walls
             objects[rect].anim();
-
         }
-
     }, 50);
-
-    //iseimas is ribu, kazkas blogai
-
-
 }
 init();
