@@ -12,7 +12,19 @@ let timerId = setInterval(countdown, 1000);
 function countdown() {
     if (timeLeft == 0) {
         clearTimeout(timerId);
-        alert("Game Over");
+        setInterval(function(){
+            let result = `
+            <div>
+            <div style="font-size: 50px; text-align: center">TIMES UP</div>
+                <div style="font-size: 30px; text-align: center">YOU LOSE!!!</div>
+                <br>
+                <div style="font-size: 30px; text-align: center">Are you want to play again?</div>
+                <br>
+                <button onclick="start();">Yes</button>
+            </div> 
+            `;
+            document.querySelector("#game").innerHTML = result;
+         },500);
     } else{
         elem.innerHTML = timeLeft + ' seconds left';
         timeLeft--;
