@@ -54,8 +54,22 @@ window.onkeydown = function (event) {
     if (y < -14) {
         y = -14;
     }
-    if (x + 21 > c.width) { // + - 21 tai masinos ilgis, jei ju nebutu, tai masina pasisleptu uz canvas masinos ilgiu
-        x = c.width - 21;   // c - canvas
+    if (x + 16 > c.width) { // + - 21 tai masinos ilgis, jei ju nebutu, tai masina pasisleptu uz canvas masinos ilgiu
+         if (x = c.width - 16){ //Palietus siena, laimima
+            
+             setInterval(function(){
+                let result = `
+                <div style="background-color:C63B1E">
+                <h4>YOU WON!!!!<h4>
+                <br>
+                <h4>Are you want to play again?</h4>
+                </div>
+                
+                
+                `;
+                document.querySelector("#game").innerHTML = result;
+             },500);
+         }   // c - canvas
     }
     if (y + 25 > c.height) { // same here with y coords
         y = c.height - 25;
