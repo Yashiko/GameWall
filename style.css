@@ -7,9 +7,6 @@ canvas{
     height: 500px;
 };
 
-h4{
-    font-size: 50px;
-}
-.end-game{
-    background-color: C63B1E;
+button{
+    background-color: blue;
 }

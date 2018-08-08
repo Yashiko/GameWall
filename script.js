@@ -8,14 +8,16 @@ document.getElementById("time").style.fontSize = "18px";
 let timeLeft = 20;
 let elem = document.getElementById("time");
 let timerId = setInterval(countdown, 1000);
+
 function countdown() {
     if (timeLeft == 0) {
         clearTimeout(timerId);
         alert("Game Over");
-    } else {
+    } else{
         elem.innerHTML = timeLeft + ' seconds left';
         timeLeft--;
     }
+
 }
 
 let c = document.getElementById("myCanvas");
@@ -56,16 +58,16 @@ window.onkeydown = function (event) {
     }
     if (x + 16 > c.width) { // + - 21 tai masinos ilgis, jei ju nebutu, tai masina pasisleptu uz canvas masinos ilgiu
          if (x = c.width - 16){ //Palietus siena, laimima
-            
+            clearTimeout(timerId);  //laimejus, sustabdo timeri
              setInterval(function(){
                 let result = `
-                <div style="background-color:C63B1E">
-                <h4>YOU WON!!!!<h4>
-                <br>
-                <h4>Are you want to play again?</h4>
-                </div>
-                
-                
+                <di>
+                    <div style="font-size: 50px; text-align: center">YOU WON!!!!</div>
+                    <br>
+                    <div style="font-size: 30px; text-align: center">Are you want to play again?</div>
+                    <br>
+                    <button style="background-color:#C63B1E">Yes</button>
+                </div> 
                 `;
                 document.querySelector("#game").innerHTML = result;
              },500);
