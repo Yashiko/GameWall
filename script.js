@@ -38,35 +38,32 @@ function background() {
     ctx.fillRect(0, 0, c.width, c.height);
 }
 
-// valdomas rectange
+// // valdomas rectange
 let x = 0; // x coord.
 let y = 60; // y coord  
-//Creat car
-function drawImg() {
-    carImage = new Image();
-    carImage.src = "car.gif";
-    ctx.drawImage(carImage, x, y, 20, 25);
-}
-// function object ( x, y, width, height, color){
-//     this.width = width;
-//     this.height = height;
-//     this.x = x;
-//     this.y = y;
-//     this.color = color;
-
-//     this.update = function(){
-//         this.draw()
-//     }
-//     this.draw = function () {
-//         c.beginPath();
-//         c.rect(this.x, this.y, this.width, this.height);
-//         c.fillStyle = this.color;
-//         c.fill();
-//         c.closePath;
-//     }
+// let img;
+// //Creat car
+//  function draw() {
+//     carImage = new Image();
+//     carImage.src = "car.gif";
+//     ctx.drawImage(carImage, x, y, 20, 25);
 // }
-// var object_1 = new object (0, 60, 20, 25, red)
+function object_player ( x, y, w, h){
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h= h;
 
+
+    this.draw = function () {
+
+        ctx.fillRect(this.x, this.y, this.w, this.h);
+        ctx.fillStyle = "blue";
+        
+
+    }
+}
+let object_1 = new object_player(x, y, 20, 25);
 
 //controling the car,
 window.onkeydown = function (event) {
@@ -114,12 +111,11 @@ function start() {   //start again, reload page
 }
 
 //creating wall
-function Square(x1, y1, w1, h1) {
+function creatingWalls(x1, y1, w1, h1) {
     this.x1 = x1;
     this.y1 = y1;
     this.w1 = w1;
     this.h1 = h1;
-
     //moving
     this.anim = function () {
         if (this.y1 < ctx.canvas.height) {
@@ -131,35 +127,32 @@ function Square(x1, y1, w1, h1) {
         }  
     }
 
-    }
-
-
-//colission
-function collides (a, b){
-    return  a.x < b.x1 + b.width &&
-            a.x + a.width > b.x1 &&
-            a.y < b.y1 + b.height &&
-            a.y + a.height > b.y1;    
 }
+
+
+// //colission
+// function collides(a, b){
+//     return  a.x < b.x1 + b.width &&
+//             a.x + a.width > b.x1 &&
+//             a.y < b.y1 + b.height &&
+//             a.y + a.height > b.y1;    
+// }
 // the walls coords
-function init() {
-    let rect1 = new Square(50, 0, 10, 50);
-    let rect2 = new Square(100, 20, 10, 80);
-    let rect3 = new Square(150, 10, 10, 40)
-    let rect4 = new Square(200, 60, 10, 70)
-    let objects = [rect1, rect2, rect3, rect4];
-  
 
-    // pagr zaidimo veikimas
-    setInterval(function () {
-        background();   //set background
-        drawImg();     // set redRect
-        for (let rect in objects) { // sets walls
-            objects[rect].anim();
-        }
-        if (collides(x, rect1)){
-            alert("you lose");
-        }
+let rect1 = new creatingWalls(50, 0, 10, 50);
+let rect2 = new creatingWalls(100, 20, 10, 80);
+let rect3 = new creatingWalls(150, 10, 10, 40)
+let rect4 = new creatingWalls(200, 60, 10, 70)
+let objects = [rect1, rect2, rect3, rect4];
+// pagr zaidimo veikimas
+setInterval(function () {
+    background();   //set background
+    object_player();     // set redRect
+    for (let rect in objects) { // sets walls
+        objects[rect].anim();
+    }
+    // if (collides(img, rect1)){
+    //     alert("you lose");
+    // }
     }, 50);
-}
-init();
+
