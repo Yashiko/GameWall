@@ -130,14 +130,10 @@ function Square(x1, y1, w1, h1) {
             this.y1 = -80;          //the wall start coord
         }  
     }
-    this.collide = function(){
 
-        if (collides(carImage, objects)){
-            alert("you lose");
-        }
     }
 
-}
+
 //colission
 function collides (a, b){
     return  a.x < b.x1 + b.width &&
@@ -145,7 +141,6 @@ function collides (a, b){
             a.y < b.y1 + b.height &&
             a.y + a.height > b.y1;    
 }
-
 // the walls coords
 function init() {
     let rect1 = new Square(50, 0, 10, 50);
@@ -162,7 +157,9 @@ function init() {
         for (let rect in objects) { // sets walls
             objects[rect].anim();
         }
-
+        if (collides(x, rect1)){
+            alert("you lose");
+        }
     }, 50);
 }
 init();
