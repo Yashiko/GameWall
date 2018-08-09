@@ -47,7 +47,28 @@ function drawImg() {
     carImage.src = "car.gif";
     ctx.drawImage(carImage, x, y, 20, 25);
 }
-//controling the car
+// function object ( x, y, width, height, color){
+//     this.width = width;
+//     this.height = height;
+//     this.x = x;
+//     this.y = y;
+//     this.color = color;
+
+//     this.update = function(){
+//         this.draw()
+//     }
+//     this.draw = function () {
+//         c.beginPath();
+//         c.rect(this.x, this.y, this.width, this.height);
+//         c.fillStyle = this.color;
+//         c.fill();
+//         c.closePath;
+//     }
+// }
+// var object_1 = new object (0, 60, 20, 25, red)
+
+
+//controling the car,
 window.onkeydown = function (event) {
     let keyPr = event.keyCode; //moving right
     if (keyPr === 39) {
@@ -99,7 +120,6 @@ function Square(x1, y1, w1, h1) {
     this.w1 = w1;
     this.h1 = h1;
 
-
     //moving
     this.anim = function () {
         if (this.y1 < ctx.canvas.height) {
@@ -108,12 +128,23 @@ function Square(x1, y1, w1, h1) {
             ctx.fillRect(this.x1, this.y1, this.w1, this.h1);
         } else {
             this.y1 = -80;          //the wall start coord
+        }  
+    }
+    this.collide = function(){
+
+        if (collides(carImage, objects)){
+            alert("you lose");
         }
-        
     }
 
 }
 //colission
+function collides (a, b){
+    return  a.x < b.x1 + b.width &&
+            a.x + a.width > b.x1 &&
+            a.y < b.y1 + b.height &&
+            a.y + a.height > b.y1;    
+}
 
 // the walls coords
 function init() {
@@ -123,12 +154,7 @@ function init() {
     let rect4 = new Square(200, 60, 10, 70)
     let objects = [rect1, rect2, rect3, rect4];
   
-    function collides (a, b){
-        return  a.x < b.x1 + b.width &&
-                a.x + a.width > b.x1 &&
-                a.y < b.y1 + b.height &&
-                a.y + a.height > b.y1;    
-    }
+
     // pagr zaidimo veikimas
     setInterval(function () {
         background();   //set background
@@ -136,9 +162,7 @@ function init() {
         for (let rect in objects) { // sets walls
             objects[rect].anim();
         }
-        if (collides(a,b)){
 
-        }
     }, 50);
 }
 init();
