@@ -86,6 +86,7 @@ window.onkeydown = function (event) {
     if (y + 25 > c.height) { // same here with y coords
         y = c.height - 25;
     }
+
 }
 function start() {   //start again, reload page
     location.reload();
@@ -98,6 +99,7 @@ function Square(x1, y1, w1, h1) {
     this.w1 = w1;
     this.h1 = h1;
 
+
     //moving
     this.anim = function () {
         if (this.y1 < ctx.canvas.height) {
@@ -107,9 +109,11 @@ function Square(x1, y1, w1, h1) {
         } else {
             this.y1 = -80;          //the wall start coord
         }
+        
     }
 
 }
+//colission
 
 // the walls coords
 function init() {
@@ -118,14 +122,22 @@ function init() {
     let rect3 = new Square(150, 10, 10, 40)
     let rect4 = new Square(200, 60, 10, 70)
     let objects = [rect1, rect2, rect3, rect4];
-
-
+  
+    function collides (a, b){
+        return  a.x < b.x1 + b.width &&
+                a.x + a.width > b.x1 &&
+                a.y < b.y1 + b.height &&
+                a.y + a.height > b.y1;    
+    }
     // pagr zaidimo veikimas
     setInterval(function () {
         background();   //set background
         drawImg();     // set redRect
         for (let rect in objects) { // sets walls
             objects[rect].anim();
+        }
+        if (collides(a,b)){
+
         }
     }, 50);
 }
