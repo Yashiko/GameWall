@@ -65,7 +65,7 @@ function object_player( x, y, w, h){
         ctx.fillStyle = "black";
     
 }
-let object_1 = new object_player(0, 60, 10, 15); //po apacia, kaip ji iskelti i virsu
+let object_1 = new object_player(x, y, 10, 15); //po apacia, kaip ji iskelti i virsu
 
 //controling the car,
 window.onkeydown = function (event) {
