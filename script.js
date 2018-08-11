@@ -39,31 +39,43 @@ function background() {
 }
 
 // // valdomas rectange
-let x = 0; // x coord.
-let y = 60; // y coord  
+// let x = 0; // x coord.
+// let y = 60; // y coord  
 // let img;
 // //Creat car
-//  function draw() {
-//     carImage = new Image();
-//     carImage.src = "car.gif";
-//     ctx.drawImage(carImage, x, y, 20, 25);
-// }
-function object_player ( x, y, w, h){
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h= h;
-
-
-    this.draw = function () {
-
+ function draw( x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h= h;
+        
+        this.draw1 = function () {
         ctx.fillRect(this.x, this.y, this.w, this.h);
         ctx.fillStyle = "blue";
-        
+        // carImage = new Image();
+        // carImage.src = "car.gif";
+        // ctx.drawImage(carImage, 0, 60, 20, 25);
+
 
     }
+
 }
-let object_1 = new object_player(x, y, 20, 25);
+// let object_1 = new draw(carImage, x, y, 20, 25);
+// function object_player ( x, y, w, h){
+//     this.x = x;
+//     this.y = y;
+//     this.w = w;
+//     this.h= h;
+
+//     this.draw = function () {
+
+//         ctx.fillRect(this.x, this.y, this.w, this.h);
+//         ctx.fillStyle = "blue";
+        
+
+//     }
+// }
+let object_1 = new draw(0, 60, 20, 25);
 
 //controling the car,
 window.onkeydown = function (event) {
@@ -147,8 +159,8 @@ let objects = [rect1, rect2, rect3, rect4];
 // pagr zaidimo veikimas
 setInterval(function () {
     background();   //set background
-    object_player();     // set redRect
-    for (let rect in objects) { // sets walls
+    // object_player();     // set redRect
+        for (let rect in objects) { // sets walls
         objects[rect].anim();
     }
     // if (collides(img, rect1)){
