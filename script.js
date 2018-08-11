@@ -28,19 +28,19 @@ function countdown() {
         elem.innerHTML = timeLeft + ' seconds left';
         timeLeft--;
     }
-
 }
 
 let c = document.getElementById("myCanvas");
 let ctx = c.getContext("2d");
+
+
 function background() {
     ctx.fillStyle = "darkgreen";
     ctx.fillRect(0, 0, c.width, c.height);
 }
 
 // // valdomas rectange
-let x = 0; // x coord.
-let y = 60; // y coord  
+
 
 // let img;
 // //Creat car
@@ -54,8 +54,10 @@ let y = 60; // y coord
 // }
 
 
+let x = 0; // x coord.
+let y = 60; // y coord  
 
-function object_player( x, y, w, h){
+function player( x, y, w, h){
     this.x = x;
     this.y = y;
     this.w = w;
@@ -65,7 +67,7 @@ function object_player( x, y, w, h){
         ctx.fillStyle = "black";
     
 }
-let object_1 = new object_player(x, y, 10, 15); //po apacia, kaip ji iskelti i virsu
+let object_1 = new player(x, y, 10, 15); //po apacia, kaip ji iskelti i virsu
 
 //controling the car,
 window.onkeydown = function (event) {
@@ -122,7 +124,7 @@ function creatingWalls(x1, y1, w1, h1) {
     this.anim = function () {
         if (this.y1 < ctx.canvas.height) {
             this.y1 += 5;   //wall moving speed
-            ctx.fillStyle = "brown";1
+            ctx.fillStyle = "brown";
             ctx.fillRect(this.x1, this.y1, this.w1, this.h1);
         } else {
             this.y1 = -80;          //the wall start coord
@@ -149,12 +151,13 @@ let objects = [rect1, rect2, rect3, rect4];
 // pagr zaidimo veikimas
 setInterval(function () {
     background();   //set background
-    // Boom();
-        for (let rect in objects) { // sets walls
+    player();
+    
+    for (let rect in objects) { // sets walls
         objects[rect].anim();
     }
-    // if (collides(carImage, rect1)){
-    //     alert("you lose");
-    // }
+    if (collides(object_1, rect1)){
+        alert("you lose");
+    }
     }, 50);
 
