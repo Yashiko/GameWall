@@ -39,22 +39,20 @@ function background() {
 }
 
 // // valdomas rectange
-// let x = 0; // x coord.
-// let y = 60; // y coord  
+let x = 0; // x coord.
+let y = 60; // y coord  
 // let img;
 // //Creat car
-function Boom(x2, y2, w2, h2) {
-    this.x2 = x2;
-    this.y2= y2;
-    this.w2 = w2;
-    this.h2 = h2;
+function Boom(){
 
-    this.Imge = function () {
-        ctx.fillStyle = "brown";1
-        ctx.fillRect(this.x2, this.y2, this.w2, this.h2);
-    }
+            let carImage = new Image();
+            carImage.src = "C:/Users/PC/Documents/GitHub/GameWall/car.gif";
+            carImage.onload = function(){
+                ctx.drawImage(carImage, x, y, 20, 25);
+        }
 }
-let carDraw = new Boom(0, 60, 20, 25);
+
+
 
 // function object_player ( x, y, w, h){
 //     this.x = x;
@@ -154,12 +152,12 @@ let objects = [rect1, rect2, rect3, rect4];
 // pagr zaidimo veikimas
 setInterval(function () {
     background();   //set background
-
+    Boom();
         for (let rect in objects) { // sets walls
         objects[rect].anim();
     }
-    // if (collides(carImage, rect1)){
-    //     alert("you lose");
-    // }
+    if (collides(carImage, rect1)){
+        alert("you lose");
+    }
     }, 50);
 
