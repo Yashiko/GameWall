@@ -43,16 +43,15 @@ function background() {
 // let y = 60; // y coord  
 // let img;
 // //Creat car
-function Boom(x, y, w, h) {
-    this.x = x;
-    this.y= y;
-    this.w = w;
-    this.h = h;
+function Boom(x2, y2, w2, h2) {
+    this.x2 = x2;
+    this.y2= y2;
+    this.w2 = w2;
+    this.h2 = h2;
 
     this.Imge = function () {
-        let carImage = new Image();
-        carImage.src = "car.gif";
-        ctx.drawImage(carImage, this.x, this.y, this.w, this.h);
+        ctx.fillStyle = "brown";1
+        ctx.fillRect(this.x2, this.y2, this.w2, this.h2);
     }
 }
 let carDraw = new Boom(0, 60, 20, 25);
@@ -128,7 +127,7 @@ function creatingWalls(x1, y1, w1, h1) {
     this.anim = function () {
         if (this.y1 < ctx.canvas.height) {
             this.y1 += 5;   //wall moving speed
-            ctx.fillStyle = "brown";
+            ctx.fillStyle = "brown";1
             ctx.fillRect(this.x1, this.y1, this.w1, this.h1);
         } else {
             this.y1 = -80;          //the wall start coord
