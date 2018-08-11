@@ -43,24 +43,20 @@ function background() {
 // let y = 60; // y coord  
 // let img;
 // //Creat car
- function draw( x, y, w, h) {
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h= h;
-        
-        this.draw1 = function () {
-        ctx.fillRect(this.x, this.y, this.w, this.h);
-        ctx.fillStyle = "blue";
-        // carImage = new Image();
-        // carImage.src = "car.gif";
-        // ctx.drawImage(carImage, 0, 60, 20, 25);
+function Boom(x, y, w, h) {
+    this.x = x;
+    this.y= y;
+    this.w = w;
+    this.h = h;
 
-
+    this.Imge = function () {
+        let carImage = new Image();
+        carImage.src = "car.gif";
+        ctx.drawImage(carImage, this.x, this.y, this.w, this.h);
     }
-
 }
-// let object_1 = new draw(carImage, x, y, 20, 25);
+let carDraw = new Boom(0, 60, 20, 25);
+
 // function object_player ( x, y, w, h){
 //     this.x = x;
 //     this.y = y;
@@ -75,7 +71,7 @@ function background() {
 
 //     }
 // }
-let object_1 = new draw(0, 60, 20, 25);
+// let object_1 = new draw(0, 60, 20, 25);
 
 //controling the car,
 window.onkeydown = function (event) {
@@ -142,13 +138,13 @@ function creatingWalls(x1, y1, w1, h1) {
 }
 
 
-// //colission
-// function collides(a, b){
-//     return  a.x < b.x1 + b.width &&
-//             a.x + a.width > b.x1 &&
-//             a.y < b.y1 + b.height &&
-//             a.y + a.height > b.y1;    
-// }
+// colission
+function collides(a, b){
+    return  a.x < b.x1 + b.width &&
+            a.x + a.width > b.x1 &&
+            a.y < b.y1 + b.height &&
+            a.y + a.height > b.y1;    
+}
 // the walls coords
 
 let rect1 = new creatingWalls(50, 0, 10, 50);
@@ -159,11 +155,11 @@ let objects = [rect1, rect2, rect3, rect4];
 // pagr zaidimo veikimas
 setInterval(function () {
     background();   //set background
-    // object_player();     // set redRect
+
         for (let rect in objects) { // sets walls
         objects[rect].anim();
     }
-    // if (collides(img, rect1)){
+    // if (collides(carImage, rect1)){
     //     alert("you lose");
     // }
     }, 50);
